@@ -1,0 +1,152 @@
+html, body, #full_container {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow-x: hidden;
+  background-color: darkseagreen;
+  color: darkgray;
+  float: left;
+  position: relative;
+}
+
+#full_container nav {
+  width: 50px;
+  height: 150px;
+  background-color: teal;
+  color: floralwhite;
+  position: absolute;
+  right: 0;
+}
+#full_container section {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  float: left;
+}
+#full_container #sec_numbers #sec1_nav {
+  width: 730px;
+  height: 50px;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  margin-left: -360px;
+  float: left;
+  z-index: 50;
+}
+#full_container #sec_numbers #sec1_nav a {
+  width: 58px;
+  height: 58px;
+  position: relative;
+  display: block;
+  float: left;
+  background-color: teal;
+  text-align: center;
+  font-size: 50px;
+  color: floralwhite;
+  margin-left: 10px;
+  margin-top: 0px;
+  text-decoration: none;
+  line-height: 50px;
+  border: 3px solid lightgray;
+  border-top: 0px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+#full_container #sec_numbers #sec1_nav a:first-child {
+  margin-left: 0px;
+}
+#full_container #sec_numbers #sec1_nav a.active {
+  background-color: mediumaquamarine;
+  box-shadow: 3px 3px 5px rgba(20, 20, 20, 0.9);
+}
+#full_container #sec_numbers #sec1_screen_container {
+  width: 100vw;
+  height: 100vh;
+}
+#full_container #sec_numbers #sec1_screen_container .screen {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: -100vw;
+  left: 0;
+}
+#full_container #sec_numbers #sec1_screen_container #sec_numbers_s1 {
+  top: 0;
+}
+#full_container #sec_numbers #sec1_screen_container .final_container {
+  width: 600px;
+  height: 50px;
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  margin-left: -300px;
+}
+#full_container #sec_numbers #sec1_screen_container .final_container div {
+  width: 50px;
+  height: 40px;
+  display: block;
+  float: left;
+  margin-left: 5px;
+  border: 2px dashed floralwhite;
+  color: floralwhite;
+  font-size: 35px;
+  text-align: center;
+  padding-top: 10px;
+}
+#full_container #sec_numbers #sec1_screen_container .final_container div.filled {
+  background-color: lightblue;
+}
+#full_container #sec_numbers #sec1_screen_container .final_container div.ondragover {
+  background-color: lightyellow;
+  color: lightgray;
+}
+#full_container #sec_numbers #sec1_screen_container .start_container {
+  width: 600px;
+  height: 50px;
+  position: absolute;
+  top: 400px;
+  left: 50%;
+  margin-left: -300px;
+}
+#full_container #sec_numbers #sec1_screen_container .start_container div {
+  width: 50px;
+  height: 40px;
+  display: block;
+  float: left;
+  margin-left: 5px;
+  border: 2px dashed floralwhite;
+  color: floralwhite;
+  background-color: darkseagreen;
+  font-size: 35px;
+  text-align: center;
+  padding-top: 10px;
+  text-decoration: none;
+}
+#full_container #sec_numbers #sec1_screen_container .start_container div.active {
+  background-color: lightblue;
+}
+#full_container #sec_numbers #sec1_screen_container .start_container div.empty {
+  background-color: darkseagreen;
+}
+#full_container #sec_numbers #sec1_screen_container .start_container div.ondrag {
+  background-color: lightyellow;
+}
+#full_container #sec_numbers #sec1_screen_container .footer {
+  width: 400px;
+  height: 65px;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  margin-left: -100px;
+}
+#full_container #sec_numbers #sec1_screen_container .footer .reload {
+  position: relative;
+  float: left;
+  color: white;
+}
+#full_container #sec_numbers #sec1_screen_container .footer .next {
+  position: relative;
+  float: left;
+  color: white;
+  margin-left: 20px;
+}
