@@ -40,7 +40,7 @@ App = {
       $("#sec1_nav .active").removeClass("active");
       return $(this).addClass("active");
     });
-    return $("#sec_numbers3").on("click", function(event) {
+    $("#sec_numbers3").on("click", function(event) {
       event.preventDefault();
       if (App.busy) {
         return false;
@@ -53,8 +53,24 @@ App = {
       $("#sec1_nav .active").removeClass("active");
       return $(this).addClass("active");
     });
+    return $("#sec_numbers4").on("click", function(event) {
+      event.preventDefault();
+      if (App.busy) {
+        return false;
+      }
+      if ($(this).hasClass("active")) {
+        return false;
+      }
+      App.busy = true;
+      App.numbers_sec4_init();
+      $("#sec1_nav .active").removeClass("active");
+      return $(this).addClass("active");
+    });
   },
-  numbers_init: function() {
+  numbers_init: function(callb) {
+    if (callb == null) {
+      callb = null;
+    }
     App.start_container.find("div").addClass("active").draggable({
       revert: true
     }).css({
@@ -68,7 +84,11 @@ App = {
         elid = ui.draggable.context.attributes.data_id.value;
         if ($(this).attr("data_id") === elid) {
           console.log("si es");
-          App.addScore();
+          if (callb !== null) {
+            App.addScore(callb, elid);
+          } else {
+            App.addScore();
+          }
           that = $(this);
           ui.draggable.draggable("option", "revert", false);
           that.addClass("filled");
@@ -175,19 +195,83 @@ App = {
     return App.numbers_init();
   },
   numbers_sec3_init: function() {
+    var arreglo, i, rand, resultado;
     App.goal_numbers = 10;
     App.current_score = 0;
     App.screen = $("#sec_numbers_s3");
     App.start_container = App.screen.find(".start_container");
+    arreglo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    i = 1;
+    App.start_container.html("");
+    while (i <= 10) {
+      rand = Math.floor(Math.random() * arreglo.length);
+      resultado = parseInt(arreglo.splice(rand, 1));
+      App.start_container.append('<div class="active " data_id="' + resultado + '" href="http://void/' + resultado + '">' + resultado + '</div>');
+      i++;
+    }
+    App.start_container = App.screen.find(".start_container");
     App.final_container = App.screen.find(".final_container");
     App.reload = App.screen.find(".reload");
     App.reload.on("click", event, App.numbers_sec3init);
-    return App.numbers_init();
+    App.numbers_init(App.number_active_next);
+    App.final_container.children().droppable("option", "disabled", true);
+    App.final_container.find("div").first().droppable("option", "disabled", false);
+    return console.log(App.final_container.find("div").first());
   },
-  addScore: function() {
+  numbers_sec4_init: function() {
+    var arreglo, i, rand, resultado;
+    App.goal_numbers = 10;
+    App.current_score = 0;
+    App.screen = $("#sec_numbers_s4");
+    App.start_container = App.screen.find(".start_container");
+    arreglo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    i = 1;
+    App.start_container.html("");
+    while (i <= 10) {
+      rand = Math.floor(Math.random() * arreglo.length);
+      resultado = parseInt(arreglo.splice(rand, 1));
+      App.start_container.append('<div class="active " data_id="' + resultado + '" href="http://void/' + resultado + '">' + resultado + '</div>');
+      i++;
+    }
+    App.final_container = App.screen.find(".final_container");
+    App.final_container.html("");
+    i = 1;
+    while (i <= 10) {
+      rand = Math.floor(Math.random() * 11);
+      console.log(rand);
+      if (rand > 4) {
+        App.final_container.append('<div class="active " data_id="' + i + '" href="http://void/' + i + '">' + i + '</div>');
+      } else {
+        App.final_container.append('<div class="active " data_id="' + i + '" href="http://void/' + i + '"></div>');
+      }
+      i++;
+    }
+    App.reload = App.screen.find(".reload");
+    App.reload.on("click", event, App.numbers_sec4_init);
+    return App.numbers_init(App.number_write_number);
+  },
+  number_active_next: function() {
+    console.log(App.final_container.find("div").eq(1));
+    return App.final_container.find("div").eq(App.current_score).droppable("option", "disabled", false);
+  },
+  number_write_number: function(elid) {
+    return App.final_container.find("div").eq(elid - 1).html(elid);
+  },
+  addScore: function(callb, elid) {
+    if (callb == null) {
+      callb = null;
+    }
+    if (elid == null) {
+      elid = 0;
+    }
     App.current_score++;
     if (App.current_score === App.goal_numbers) {
       return App.win();
+    } else {
+      if (callb !== null) {
+        console.log("callb ");
+        return callb(elid);
+      }
     }
   },
   win: function() {

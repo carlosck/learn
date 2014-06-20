@@ -139,14 +139,18 @@ html, body, #full_container {
   left: 50%;
   margin-left: -100px;
 }
-#full_container #sec_numbers #sec1_screen_container .footer .reload {
-  position: relative;
+#full_container #sec_numbers #sec1_screen_container .reload {
+  position: absolute;
   float: left;
+  left: 20px;
+  bottom: 20px;
   color: white;
 }
-#full_container #sec_numbers #sec1_screen_container .footer .next {
-  position: relative;
+#full_container #sec_numbers #sec1_screen_container .next {
+  position: absolute;
   float: left;
   color: white;
-  margin-left: 20px;
+  float: left;
+  right: 20px;
+  bottom: 20px;
 }
